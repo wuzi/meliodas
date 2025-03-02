@@ -20,8 +20,8 @@ import { User } from './users/entities/user.entity';
         entities: [User],
         namingStrategy: new SnakeNamingStrategy(),
         host: configService.get<string>('DATABASE_HOST') || 'localhost',
-        database: configService.get<string>('DATABASE_NAME') || 'meliodas',
-        password: configService.get<string>('DATABASE_PASS') || 'postgres',
+        database: configService.get<string>('DATABASE_NAME') || 'postgres',
+        password: configService.get<string>('DATABASE_PASS') || 'password',
         username: configService.get<string>('DATABASE_USER') || 'postgres',
         synchronize: true, // DO NOT USE IN PRODUCTION
       }),

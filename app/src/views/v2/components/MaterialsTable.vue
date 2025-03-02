@@ -67,13 +67,17 @@
                 >
               </td>
               <td class="align-middle">
-                <a
-                  href="javascript:;"
+                <router-link
+                  :to="{ name: 'Editar Material', params: { id: material.id } }"
                   class="text-secondary font-weight-bold text-xs"
                   data-toggle="tooltip"
                   data-original-title="Editar material"
-                  >Editar</a
                 >
+                  Editar
+                </router-link>
+                <span @click="confirmDelete(material.id)" class="text-danger font-weight-bold text-xs ms-2" style="cursor: pointer;">
+                  Excluir
+                </span>
               </td>
             </tr>
           </tbody>
@@ -87,6 +91,8 @@
 import SoftAvatar from "@/components/SoftAvatar.vue";
 import SoftBadge from "@/components/SoftBadge.vue";
 import img1 from "../../../assets/img/blank-profile.png";
+import { mapActions } from 'vuex';
+import Swal from "sweetalert2";
 
 export default {
   name: "materials-table",
@@ -105,5 +111,29 @@ export default {
       required: true,
     },
   },
+  methods: {
+    ...mapActions(['deleteMaterial']),
+    confirmDelete(id) {
+      Swal.fire({
+        title: 'Tem certeza?',
+        text: "Você não poderá reverter isso!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, excluir!',
+        cancelButtonText: 'Cancelar'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await this.deleteMaterial({ id });
+          Swal.fire(
+            'Excluído!',
+            'O material foi excluído.',
+            'success'
+          );
+        }
+      });
+    }
+  }
 };
 </script>

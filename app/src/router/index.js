@@ -7,6 +7,8 @@ import Profile from "@/views/Profile.vue";
 import SignIn from "@/views/v2/SignIn.vue";
 import SignUp from "@/views/SignUp.vue";
 import EditUserForm from "@/views/v2/components/EditUserForm.vue";
+import MaterialList from "@/views/v2/MaterialList.vue";
+import EditMaterialForm from "@/views/v2/components/EditMaterialForm.vue";
 
 const routes = [
   {
@@ -45,12 +47,17 @@ const routes = [
       {
         path: "",
         name: "Materiais",
-        component: () => import("@/views/v2/MaterialList.vue"),
+        component: MaterialList,
       },
       {
         path: "create",
         name: "Criar Material",
         component: () => import("@/views/v2/CreateMaterial.vue"),
+      },
+      {
+        path: "edit/:id",
+        name: "Editar Material",
+        component: EditMaterialForm,
       },
     ]
   },

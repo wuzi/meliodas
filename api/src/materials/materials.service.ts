@@ -28,11 +28,11 @@ export class MaterialsService {
     return this.materialRepository.findOne({ where: { id } });
   }
 
-  update(id: number, updateMaterialDto: UpdateMaterialDto) {
+  update(id: string, updateMaterialDto: UpdateMaterialDto) {
     return this.materialRepository.update(id, updateMaterialDto);
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.materialRepository.delete(id);
   }
 }

@@ -25,7 +25,7 @@ export enum Status {
   Inactive = 'INACTIVE',
 }
 
-@Entity()
+@Entity({ name: 'users' })
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;

@@ -4,7 +4,6 @@ import UserList from "@/views/v2/UserList.vue";
 import Billing from "@/views/Billing.vue";
 import VirtualReality from "@/views/VirtualReality.vue";
 import Profile from "@/views/Profile.vue";
-import Rtl from "@/views/Rtl.vue";
 import SignIn from "@/views/v2/SignIn.vue";
 import SignUp from "@/views/SignUp.vue";
 
@@ -63,11 +62,6 @@ const routes = [
     path: "/profile",
     name: "Profile",
     component: Profile,
-  },
-  {
-    path: "/rtl-page",
-    name: "Rtl",
-    component: Rtl,
   },
   {
     path: "/sign-in",

@@ -1,7 +1,9 @@
 import { createStore } from "vuex";
 import bootstrap from "bootstrap/dist/js/bootstrap.min.js";
+import modules from "./modules";
 
 export default createStore({
+  modules,
   state: {
     hideConfigButton: false,
     isPinned: true,

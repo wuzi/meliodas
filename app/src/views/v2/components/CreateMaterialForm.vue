@@ -81,10 +81,10 @@ export default {
     return {
       material: {
         name: '',
-        type: 'PERMANENT',
         patrimonyNumber: '',
-        description: '',
+        type: 'PERMANENT',
         status: 'ACTIVE',
+        description: '',
       }
     }
   },

@@ -8,42 +8,42 @@
             target="_blank"
             class="mb-2 text-secondary me-xl-5 me-3 mb-sm-0"
           >
-            Company
+            Link
           </a>
           <a
             href="javascript:;"
             target="_blank"
             class="mb-2 text-secondary me-xl-5 me-3 mb-sm-0"
           >
-            About Us
+            Link
           </a>
           <a
             href="javascript:;"
             target="_blank"
             class="mb-2 text-secondary me-xl-5 me-3 mb-sm-0"
           >
-            Team
+            Link
           </a>
           <a
             href="javascript:;"
             target="_blank"
             class="mb-2 text-secondary me-xl-5 me-3 mb-sm-0"
           >
-            Products
+            Link
           </a>
           <a
             href="javascript:;"
             target="_blank"
             class="mb-2 text-secondary me-xl-5 me-3 mb-sm-0"
           >
-            Blog
+            Link
           </a>
           <a
             href="javascript:;"
             target="_blank"
             class="mb-2 text-secondary me-xl-5 me-3 mb-sm-0"
           >
-            Pricing
+            Link
           </a>
         </div>
         <div class="mx-auto mt-2 mb-4 text-center col-lg-8">
@@ -87,7 +87,7 @@
       <div class="row">
         <div class="mx-auto mt-1 text-center col-8">
           <p class="mb-0 text-secondary">
-            Copyright © {{ new Date().getFullYear() }} Soft by Creative Tim.
+            Copyright © {{ new Date().getFullYear() }}
           </p>
         </div>
       </div>

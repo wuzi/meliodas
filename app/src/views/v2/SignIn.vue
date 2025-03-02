@@ -1,15 +1,4 @@
 <template>
-  <div class="container top-0 position-sticky z-index-sticky">
-    <div class="row">
-      <div class="col-12">
-        <navbar
-          is-blur="blur blur-rounded my-3 py-2 start-0 end-0 mx-4 shadow"
-          btn-background="bg-gradient-success"
-          :dark-mode="true"
-        />
-      </div>
-    </div>
-  </div>
   <main class="mt-0 main-content main-content-bg">
     <section>
       <div class="page-header min-vh-75">
@@ -19,9 +8,9 @@
               <div class="mt-8 card card-plain">
                 <div class="pb-0 card-header text-start">
                   <h3 class="font-weight-bolder text-success text-gradient">
-                    Welcome back
+                    Bem vindo de volta
                   </h3>
-                  <p class="mb-0">Enter your email and password to sign in</p>
+                  <p class="mb-0">Entre com seu email para acessar sua conta</p>
                 </div>
                 <div class="card-body">
                   <form role="form" class="text-start">
@@ -32,7 +21,7 @@
                       placeholder="Email"
                       name="email"
                     />
-                    <label>Password</label>
+                    <label>Senha</label>
                     <soft-input
                       id="password"
                       type="password"
@@ -40,7 +29,7 @@
                       name="password"
                     />
                     <soft-switch id="rememberMe" name="rememberMe" checked>
-                      Remember me
+                      Lembrar-me
                     </soft-switch>
                     <div class="text-center">
                       <soft-button
@@ -48,18 +37,18 @@
                         variant="gradient"
                         color="success"
                         full-width
-                        >Sign in
+                        >Acessar
                       </soft-button>
                     </div>
                   </form>
                 </div>
                 <div class="px-1 pt-0 text-center card-footer px-lg-2">
                   <p class="mx-auto mb-4 text-sm">
-                    Don't have an account?
+                    Não possui uma conta?
                     <router-link
                       :to="{ name: 'Sign Up' }"
                       class="text-success text-gradient font-weight-bold"
-                      >Sign up</router-link
+                      >Cadastrar</router-link
                     >
                   </p>
                 </div>
@@ -89,7 +78,6 @@
 </template>
 
 <script>
-import Navbar from "@/examples/PageLayout/Navbar.vue";
 import AppFooter from "@/examples/PageLayout/Footer.vue";
 import SoftInput from "@/components/SoftInput.vue";
 import SoftSwitch from "@/components/SoftSwitch.vue";
@@ -100,7 +88,6 @@ import { mapMutations } from "vuex";
 export default {
   name: "SignIn",
   components: {
-    Navbar,
     AppFooter,
     SoftInput,
     SoftSwitch,

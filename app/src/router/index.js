@@ -5,7 +5,7 @@ import Billing from "@/views/Billing.vue";
 import VirtualReality from "@/views/VirtualReality.vue";
 import Profile from "@/views/Profile.vue";
 import Rtl from "@/views/Rtl.vue";
-import SignIn from "@/views/SignIn.vue";
+import SignIn from "@/views/v2/SignIn.vue";
 import SignUp from "@/views/SignUp.vue";
 
 const routes = [

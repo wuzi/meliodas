@@ -10,5 +10,5 @@ export class CreateUserDto {
   course: string;
   department?: string;
   status: Status;
-  photoUrl: string;
+  password: string;
 }

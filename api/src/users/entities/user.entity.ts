@@ -71,8 +71,8 @@ export class User {
   })
   status: Status;
 
-  @Column({ nullable: true })
-  photoUrl: string;
+  @Column()
+  password: string;
 
   @CreateDateColumn()
   createdAt: Date;

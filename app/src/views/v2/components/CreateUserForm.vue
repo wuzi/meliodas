@@ -15,14 +15,14 @@
             </div>
             <div class="col-12 col-md-6">
               <div class="form-group">
-                <label for="matricula">Matrícula/SIAPE</label>
-                <input type="text" class="form-control" id="matricula" />
+                <label for="registrationNumber">Matrícula/SIAPE</label>
+                <input type="text" class="form-control" id="registrationNumber" />
               </div>
             </div>
             <div class="col-12 col-md-6">
               <div class="form-group">
-                <label for="role">Função</label>
-                <select class="form-select" id="role">
+                <label for="category">Categoria</label>
+                <select class="form-select" id="category">
                   <option selected disabled>Selecione uma opção</option>
                   <option value="1">Aluno</option>
                   <option value="2">Colaborador</option>
@@ -33,8 +33,8 @@
             </div>
             <div class="col-12 col-md-6">
               <div class="form-group">
-                <label for="kind">Tipo</label>
-                <select class="form-select" id="kind">
+                <label for="profile">Perfil</label>
+                <select class="form-select" id="profile">
                   <option selected disabled>Selecione uma opção</option>
                   <option value="1">Administrador</option>
                   <option value="2">Coordenador de pesquisa</option>

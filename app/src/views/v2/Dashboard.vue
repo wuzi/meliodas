@@ -1,0 +1,142 @@
+<template>
+  <div class="py-4 container-fluid">
+    <div class="row">
+      <div class="col-xl-6 col-sm-6 mb-xl-0 mb-6">
+        <mini-statistics-card
+          title="Usuários Cadastrados"
+          value="53,000"
+          :icon="{
+            component: 'ni ni-money-coins',
+            background: iconBackground,
+          }"
+          direction-reverse
+        />
+      </div>
+      <div class="col-xl-6 col-sm-6 mb-xl-0 mb-6">
+        <mini-statistics-card
+          title="Materiais Cadastrados"
+          value="2,300"
+          :icon="{
+            component: 'ni ni-world',
+            background: iconBackground,
+          }"
+          direction-reverse
+        />
+      </div>
+    </div>
+    <div class="row my-4">
+      <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
+        <projects-card />
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <timeline-list
+          class="h-100"
+          title="Orders overview"
+          description="<i class='fa fa-arrow-up text-success' aria-hidden='true'></i>
+        <span class='font-weight-bold'>24%</span> this month"
+        >
+          <timeline-item
+            color="success"
+            icon="bell-55"
+            title="$2400 Design changes"
+            date-time="22 DEC 7:20 PM"
+          />
+          <TimelineItem
+            color="danger"
+            icon="html5"
+            title="New order #1832412"
+            date-time="21 DEC 11 PM"
+          />
+          <TimelineItem
+            color="info"
+            icon="cart"
+            title="Server payments for April"
+            date-time="21 DEC 9:34 PM"
+          />
+          <TimelineItem
+            color="warning"
+            icon="credit-card"
+            title="New card added for order #4395133"
+            date-time="20 DEC 2:20 AM"
+          />
+          <TimelineItem
+            color="primary"
+            icon="key-25"
+            title="Unlock packages for development"
+            date-time="18 DEC 4:54 AM"
+          />
+          <TimelineItem
+            color="info"
+            icon="check-bold"
+            title="Notifications unread"
+            date-time="15 DEC"
+          />
+        </timeline-list>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import MiniStatisticsCard from "@/examples/Cards/MiniStatisticsCard.vue";
+import TimelineList from "../components/TimelineList.vue";
+import TimelineItem from "../components/TimelineItem.vue";
+import ProjectsCard from "../components/ProjectsCard.vue";
+import US from "../../assets/img/icons/flags/US.png";
+import DE from "../../assets/img/icons/flags/DE.png";
+import GB from "../../assets/img/icons/flags/GB.png";
+import BR from "../../assets/img/icons/flags/BR.png";
+import {
+  faHandPointer,
+  faUsers,
+  faCreditCard,
+  faScrewdriverWrench,
+} from "@fortawesome/free-solid-svg-icons";
+export default {
+  name: "dashboard-default",
+  data() {
+    return {
+      iconBackground: "bg-gradient-success",
+      faCreditCard,
+      faScrewdriverWrench,
+      faUsers,
+      faHandPointer,
+      sales: {
+        us: {
+          country: "United States",
+          sales: 2500,
+          value: "$230,900",
+          bounce: "29.9%",
+          flag: US,
+        },
+        germany: {
+          country: "Germany",
+          sales: "3.900",
+          value: "$440,000",
+          bounce: "40.22%",
+          flag: DE,
+        },
+        britain: {
+          country: "Great Britain",
+          sales: "1.400",
+          value: "$190,700",
+          bounce: "23.44%",
+          flag: GB,
+        },
+        brasil: {
+          country: "Brasil",
+          sales: "562",
+          value: "$143,960",
+          bounce: "32.14%",
+          flag: BR,
+        },
+      },
+    };
+  },
+  components: {
+    MiniStatisticsCard,
+    ProjectsCard,
+    TimelineList,
+    TimelineItem,
+  },
+};
+</script>

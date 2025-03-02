@@ -24,6 +24,10 @@ const actions = {
     const { data } = await this.$http.get(`/users/${id}`);
     commit("updateUser", { id, data });
     return data;
+  },
+  async deleteUser({ commit }, { id }) {
+    await this.$http.delete(`/users/${id}`);
+    commit("removeUser", id);
   }
 };
 
@@ -39,6 +43,9 @@ const mutations = {
     if (index !== -1) {
       state.users.splice(index, 1, data);
     }
+  },
+  removeUser(state, id) {
+    state.users = state.users.filter(user => user.id !== id);
   }
 };
 

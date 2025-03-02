@@ -75,6 +75,9 @@
                 >
                   Editar
                 </router-link>
+                <span @click="confirmDelete(user.id)" class="text-danger font-weight-bold text-xs ms-2" style="cursor: pointer;">
+                  Excluir
+                </span>
               </td>
             </tr>
           </tbody>
@@ -87,6 +90,8 @@
 <script>
 import SoftAvatar from "@/components/SoftAvatar.vue";
 import SoftBadge from "@/components/SoftBadge.vue";
+import { mapActions } from 'vuex';
+import Swal from "sweetalert2";
 import img1 from "../../../assets/img/blank-profile.png";
 
 export default {
@@ -106,5 +111,29 @@ export default {
       required: true,
     },
   },
+  methods: {
+    ...mapActions(['deleteUser']),
+    confirmDelete(id) {
+      Swal.fire({
+        title: 'Tem certeza?',
+        text: "Você não poderá reverter isso!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, excluir!',
+        cancelButtonText: 'Cancelar'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await this.deleteUser({ id });
+          Swal.fire(
+            'Excluído!',
+            'O usuário foi excluído.',
+            'success'
+          );
+        }
+      });
+    }
+  }
 };
 </script>

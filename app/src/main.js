@@ -23,7 +23,7 @@ import "./assets/css/nucleo-svg.css";
 import SoftUIDashboard from "./soft-ui-dashboard";
 
 store.$http = axios.create({
-  baseURL: "http:/localhost:3000",
+  baseURL: "http://localhost:3000",
   headers: {
     common: {
       authorization: `bearer ${store.state.auth.accessToken}`

@@ -5,7 +5,7 @@
     </router-link>
     <div class="row">
       <div class="col-12">
-        <users-table />
+        <users-table :users="users" />
       </div>
     </div>
   </div>
@@ -13,11 +13,23 @@
 
 <script>
 import UsersTable from "./components/UsersTable";
+import { mapActions } from "vuex";
 
 export default {
   name: "UserList",
   components: {
     UsersTable,
+  },
+  computed: {
+    users() {
+      return this.$store.getters.users;
+    },
+  },
+  methods: {
+    ...mapActions(["fetchUsers"]),
+  },
+  async mounted() {
+    await this.fetchUsers();
   },
 };
 </script>

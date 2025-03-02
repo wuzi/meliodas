@@ -25,7 +25,7 @@
                     <soft-input
                       id="password"
                       type="password"
-                      placeholder="Password"
+                      placeholder="Senha"
                       name="password"
                     />
                     <soft-switch id="rememberMe" name="rememberMe" checked>

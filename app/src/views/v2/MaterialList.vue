@@ -5,7 +5,7 @@
     </router-link>
     <div class="row">
       <div class="col-12">
-        <materials-table />
+        <materials-table :materials="materials" />
       </div>
     </div>
   </div>
@@ -13,11 +13,23 @@
 
 <script>
 import MaterialsTable from "./components/MaterialsTable";
+import { mapActions } from "vuex";
 
 export default {
-  name: "materials",
+  name: "MaterialList",
   components: {
     MaterialsTable,
+  },
+  computed: {
+    materials() {
+      return this.$store.getters.materials;
+    },
+  },
+  methods: {
+    ...mapActions(["fetchMaterials"]),
+  },
+  async mounted() {
+    await this.fetchMaterials();
   },
 };
 </script>

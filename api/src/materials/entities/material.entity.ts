@@ -21,6 +21,9 @@ export class Material {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column()
+  name: string;
+
   @Column({
     type: 'enum',
     enum: MaterialType,
@@ -39,9 +42,6 @@ export class Material {
     default: Status.Active,
   })
   status: Status;
-
-  @Column({ nullable: true })
-  imageUrl?: string;
 
   @CreateDateColumn()
   createdAt: Date;

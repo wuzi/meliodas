@@ -10,13 +10,13 @@
             <div class="col-12 col-md-6">
               <div class="form-group">
                 <label for="name">Nome</label>
-                <input type="text" class="form-control" id="name" required v-model="user.name" />
+                <input type="text" class="form-control" id="name" placeholder="Nome do usuário" required v-model="user.name" />
               </div>
             </div>
             <div class="col-12 col-md-6">
               <div class="form-group">
                 <label for="registrationNumber">Matrícula/SIAPE</label>
-                <input type="text" class="form-control" id="registrationNumber" required v-model="user.registrationNumber" />
+                <input type="text" class="form-control" id="registrationNumber" placeholder="Ex: 123456" required v-model="user.registrationNumber" />
               </div>
             </div>
             <div class="col-12 col-md-6">
@@ -44,37 +44,37 @@
             <div class="col-12 col-md-6">
               <div class="form-group">
                 <label for="course">Curso</label>
-                <input type="text" class="form-control" id="course" required v-model="user.course"/>
+                <input type="text" class="form-control" id="course" placeholder="Nome do curso" required v-model="user.course"/>
               </div>
             </div>
             <div class="col-12 col-md-6">
               <div class="form-group">
                 <label for="department">Departamento</label>
-                <input type="text" class="form-control" id="department" required v-model="user.department" />
+                <input type="text" class="form-control" id="department" placeholder="Departamento do usuário" required v-model="user.department" />
               </div>
             </div>
             <div class="col-12 col-md-6">
               <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="email" class="form-control" id="email" required v-model="user.email" />
+                <input type="email" class="form-control" id="email" placeholder="Email do usuário" required v-model="user.email" />
               </div>
             </div>
             <div class="col-12 col-md-6">
               <div class="form-group">
                 <label for="phone">Telefone</label>
-                <input type="text" class="form-control" id="phone" required v-model="user.phone" />
+                <input type="text" class="form-control" id="phone" placeholder="Telefone do usuário" required v-model="user.phone" />
               </div>
             </div>
             <div class="col-12 col-md-6">
               <div class="form-group">
                 <label for="password">Senha</label>
-                <input type="password" class="form-control" id="password" required v-model="user.password" />
+                <input type="password" class="form-control" id="password" placeholder="****" required v-model="user.password" />
               </div>
             </div>
             <div class="col-12 col-md-6">
               <div class="form-group">
                 <label for="confirmPassword">Confirmar senha</label>
-                <input type="password" class="form-control" id="confirmPassword" required v-model="user.confirmPassword" />
+                <input type="password" class="form-control" id="confirmPassword" placeholder="****" required v-model="user.confirmPassword" />
               </div>
             </div>
             <div class="col-12 col-md-6">

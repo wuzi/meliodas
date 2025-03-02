@@ -67,13 +67,14 @@
                 >
               </td>
               <td class="align-middle">
-                <a
-                  href="javascript:;"
+                <router-link
+                  :to="{ name: 'Editar Usuário', params: { id: user.id } }"
                   class="text-secondary font-weight-bold text-xs"
                   data-toggle="tooltip"
                   data-original-title="Editar usuário"
-                  >Editar</a
                 >
+                  Editar
+                </router-link>
               </td>
             </tr>
           </tbody>

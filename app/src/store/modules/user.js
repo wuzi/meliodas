@@ -14,6 +14,16 @@ const actions = {
   async fetchUsers({ commit }) {
     const { data } = await this.$http.get(`/users`);
     commit("setUsers", data);
+  },
+  async editUser({ commit }, { id, user }) {
+    const { data } = await this.$http.patch(`/users/${id}`, user);
+    commit("updateUser", { id, data });
+    return data;
+  },
+  async fetchUser({ commit }, { id }) {
+    const { data } = await this.$http.get(`/users/${id}`);
+    commit("updateUser", { id, data });
+    return data;
   }
 };
 
@@ -23,6 +33,12 @@ const mutations = {
   },
   setUsers(state, data) {
     state.users = data;
+  },
+  updateUser(state, { id, data }) {
+    const index = state.users.findIndex(user => user.id === id);
+    if (index !== -1) {
+      state.users.splice(index, 1, data);
+    }
   }
 };
 

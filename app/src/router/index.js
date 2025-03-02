@@ -6,6 +6,7 @@ import VirtualReality from "@/views/VirtualReality.vue";
 import Profile from "@/views/Profile.vue";
 import SignIn from "@/views/v2/SignIn.vue";
 import SignUp from "@/views/SignUp.vue";
+import EditUserForm from "@/views/v2/components/EditUserForm.vue";
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
         path: "create",
         name: "Criar Usuário",
         component: () => import("@/views/v2/CreateUser.vue"),
+      },
+      {
+        path: "edit/:id",
+        name: "Editar Usuário",
+        component: EditUserForm,
       },
     ],
   },

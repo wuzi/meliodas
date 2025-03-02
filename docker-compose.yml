@@ -9,7 +9,11 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=postgres://postgres:password@db:5432/postgres
+      - DATABASE_HOST=localhost
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=meliodas
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
     depends_on:
       - db
 

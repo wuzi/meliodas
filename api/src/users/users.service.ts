@@ -12,6 +12,10 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
   ) {}
 
+  count() {
+    return this.userRepository.count();
+  }
+
   create(createUserDto: CreateUserDto) {
     return this.userRepository.save(createUserDto);
   }

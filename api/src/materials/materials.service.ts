@@ -12,6 +12,10 @@ export class MaterialsService {
     private readonly materialRepository: Repository<Material>,
   ) {}
 
+  count() {
+    return this.materialRepository.count();
+  }
+
   create(createMaterialDto: CreateMaterialDto) {
     return this.materialRepository.save(createMaterialDto);
   }

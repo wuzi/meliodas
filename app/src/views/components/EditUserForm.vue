@@ -2,6 +2,12 @@
   <div class="container">
     <h2>Editar {{ userName }}</h2>
     <form @submit.prevent="submit">
+      <div class="form-group" v-if="user.picture">
+        <label>Foto Atual</label>
+        <div class="d-flex flex-wrap">
+          <img :src="getImageUrl(user.picture)" alt="User Picture" class="img-thumbnail" width="100" height="100" />
+        </div>
+      </div>
       <div class="form-group">
         <label for="name">Nome</label>
         <input type="text" v-model="user.name" class="form-control" id="name" required />
@@ -94,7 +100,8 @@ export default {
     async submit() {
       await this.editUser({ id: this.$route.params.id, user: { ...this.user, password: this.user.password || undefined } });
       if (this.picture) {
-        await this.uploadProfilePicture({id: this.$route.params.id, file: this.picture});
+        const user = await this.uploadProfilePicture({id: this.$route.params.id, file: this.picture});
+        this.user.picture = user.picture;
       }
       this.userName = this.user.name;
       Swal.fire({
@@ -106,6 +113,9 @@ export default {
     },
     onFileChange(event) {
       this.picture = event.target.files[0];
+    },
+    getImageUrl(filename) {
+      return `http://localhost:3000/uploads/user-pictures/${filename}`;
     },
   },
   async mounted() {

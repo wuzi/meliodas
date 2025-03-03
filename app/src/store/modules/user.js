@@ -39,6 +39,7 @@ const actions = {
       },
     });
     commit("updateUser", { id, data });
+    return data;
   },
 };
 

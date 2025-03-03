@@ -37,7 +37,7 @@
                 <div class="d-flex px-2 py-1">
                   <div>
                     <soft-avatar
-                      :img="img1"
+                      :img="getUserPictureUrl(user.picture)"
                       size="sm"
                       border-radius="lg"
                       class="me-3"
@@ -113,6 +113,9 @@ export default {
   },
   methods: {
     ...mapActions(['deleteUser']),
+    getUserPictureUrl(picture) {
+      return picture ? `http://localhost:3000/uploads/user-pictures/${picture}` : img1;
+    },
     confirmDelete(id) {
       Swal.fire({
         title: 'Tem certeza?',

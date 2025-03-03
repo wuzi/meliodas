@@ -1,16 +1,22 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { join } from 'path';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
+import { Material } from './materials/entities/material.entity';
 import { MaterialsModule } from './materials/materials.module';
 import { User } from './users/entities/user.entity';
-import { Material } from './materials/entities/material.entity';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+      serveRoot: '/uploads',
+    }),
     UsersModule,
     MaterialsModule,
     ConfigModule.forRoot(),

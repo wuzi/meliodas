@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    volumes:
+      - ./api/uploads:/usr/src/app/uploads
     environment:
       - NODE_ENV=production
       - DATABASE_HOST=db

@@ -86,6 +86,12 @@
                 </select>
               </div>
             </div>
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label for="picture">Foto de Perfil</label>
+                <input type="file" @change="onFileChange" class="form-control" id="picture" />
+              </div>
+            </div>
           </div>
           <button type="submit" class="btn btn-primary">Criar</button>
         </form>
@@ -113,11 +119,12 @@ export default {
         password: '',
         confirmPassword: '',
         status: 'ACTIVE',
-      }
+      },
+      picture: null,
     }
   },
   methods: {
-    ...mapActions(['createUser']),
+    ...mapActions(['createUser', 'uploadProfilePicture']),
     async submit() {
       if (this.user.password !== this.user.confirmPassword) {
         Swal.fire({
@@ -127,14 +134,20 @@ export default {
         });
         return;
       }
-      await this.createUser({ user: this.user });
+      const user = await this.createUser({ user: this.user });
+      if (this.picture) {
+        await this.uploadProfilePicture({id: user.id, file: this.picture});
+      }
       Swal.fire({
         icon: 'success',
         title: 'Sucesso',
         text: 'Usuário criado com sucesso',
       });
       this.$router.push({ name: 'Usuários' });
-    }
+    },
+    onFileChange(event) {
+      this.picture = event.target.files[0];
+    },
   }
 }
 </script>

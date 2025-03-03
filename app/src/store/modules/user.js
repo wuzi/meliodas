@@ -10,6 +10,7 @@ const actions = {
   async createUser({ commit }, { user }) {
     const { data } = await this.$http.post(`/users`, user);
     commit("addUser", data);
+    return data;
   },
   async fetchUsers({ commit }) {
     const { data } = await this.$http.get(`/users`);
@@ -28,7 +29,17 @@ const actions = {
   async deleteUser({ commit }, { id }) {
     await this.$http.delete(`/users/${id}`);
     commit("removeUser", id);
-  }
+  },
+  // eslint-disable-next-line no-empty-pattern
+  async uploadProfilePicture({}, { id, file }) {
+    const formData = new FormData();
+    formData.append('file', file);
+    await this.$http.post(`/users/${id}/picture`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  },
 };
 
 const mutations = {

@@ -56,6 +56,10 @@
           <option value="INACTIVE">Inativo</option>
         </select>
       </div>
+      <div class="form-group">
+        <label for="picture">Foto de Perfil</label>
+        <input type="file" @change="onFileChange" class="form-control" id="picture" />
+      </div>
       <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
   </div>
@@ -81,13 +85,17 @@ export default {
         password: '',
         confirmPassword: '',
         status: 'ACTIVE',
-      }
+      },
+      picture: null,
     }
   },
   methods: {
-    ...mapActions(['editUser', 'fetchUser']),
+    ...mapActions(['editUser', 'fetchUser', 'uploadProfilePicture']),
     async submit() {
-      await this.editUser({ id: this.$route.params.id, user: this.user });
+      await this.editUser({ id: this.$route.params.id, user: { ...this.user, password: this.user.password || undefined } });
+      if (this.picture) {
+        await this.uploadProfilePicture({id: this.$route.params.id, file: this.picture});
+      }
       this.userName = this.user.name;
       Swal.fire({
         icon: 'success',
@@ -95,7 +103,10 @@ export default {
         text: 'Usuário editado com sucesso',
       });
       this.$router.push({ name: 'UserList' });
-    }
+    },
+    onFileChange(event) {
+      this.picture = event.target.files[0];
+    },
   },
   async mounted() {
     const user = await this.fetchUser({ id: this.$route.params.id });

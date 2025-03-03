@@ -21,7 +21,9 @@ export class MaterialsService {
   }
 
   findAll() {
-    return this.materialRepository.find();
+    return this.materialRepository.find({
+      order: { createdAt: 'DESC' },
+    });
   }
 
   findOne(id: string) {

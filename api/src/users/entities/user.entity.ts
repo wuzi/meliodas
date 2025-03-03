@@ -36,8 +36,8 @@ export class User {
   @Column()
   email: string;
 
-  @Column()
-  phone: string;
+  @Column({ nullable: true })
+  picture: string;
 
   @Column({
     type: 'enum',

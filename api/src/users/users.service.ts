@@ -17,6 +17,7 @@ export class UsersService {
   }
 
   create(createUserDto: CreateUserDto) {
+    // TODO: encrypt password
     return this.userRepository.save(createUserDto);
   }
 

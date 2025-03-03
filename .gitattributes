@@ -1,4 +1,4 @@
 *.scss linguist-detectable=false
 *.css linguist-detectable=false
 *.html linguist-detectable=false
-Dockerfile linguist-detectable=false
+*.dockerfile linguist-detectable=false

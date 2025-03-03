@@ -40,6 +40,7 @@ export class UsersService {
   }
 
   async updateProfilePicture(id: string, filename: string) {
+    // TODO: delete old picture
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) {
       throw new NotFoundException('User not found');

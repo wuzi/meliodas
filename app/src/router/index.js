@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Dashboard from "@/views/v2/Dashboard.vue";
-import UserList from "@/views/v2/UserList.vue";
-import SignIn from "@/views/v2/SignIn.vue";
-import EditUserForm from "@/views/v2/components/EditUserForm.vue";
-import MaterialList from "@/views/v2/MaterialList.vue";
-import EditMaterialForm from "@/views/v2/components/EditMaterialForm.vue";
+import Dashboard from "@/views/Dashboard.vue";
+import UserList from "@/views/UserList.vue";
+import SignIn from "@/views/SignIn.vue";
+import EditUserForm from "@/views/components/EditUserForm.vue";
+import MaterialList from "@/views/MaterialList.vue";
+import EditMaterialForm from "@/views/components/EditMaterialForm.vue";
 
 const routes = [
   {
@@ -28,7 +28,7 @@ const routes = [
       {
         path: "create",
         name: "Criar Usuário",
-        component: () => import("@/views/v2/CreateUser.vue"),
+        component: () => import("@/views/CreateUser.vue"),
       },
       {
         path: "edit/:id",
@@ -48,7 +48,7 @@ const routes = [
       {
         path: "create",
         name: "Criar Material",
-        component: () => import("@/views/v2/CreateMaterial.vue"),
+        component: () => import("@/views/CreateMaterial.vue"),
       },
       {
         path: "edit/:id",

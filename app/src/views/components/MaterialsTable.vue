@@ -1,7 +1,7 @@
 <template>
   <div class="card mb-4">
     <div class="card-header pb-0">
-      <h6>Lista de usuários</h6>
+      <h6>Lista de materiais</h6>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
@@ -32,12 +32,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="user in users" :key="user.id">
+            <tr v-for="material in materials" :key="material.id">
               <td>
                 <div class="d-flex px-2 py-1">
                   <div>
                     <soft-avatar
-                      :img="getUserPictureUrl(user.picture)"
+                      :img="getPictureUrl(material.images ? material.images[0]?.filename : null)"
                       size="sm"
                       border-radius="lg"
                       class="me-3"
@@ -45,37 +45,37 @@
                     />
                   </div>
                   <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">{{ user.name }}</h6>
+                    <h6 class="mb-0 text-sm">{{ material.name }}</h6>
                     <p class="text-xs text-secondary mb-0">
-                      {{ user.email }}
+                      {{ material.patrimonyNumber }}
                     </p>
                   </div>
                 </div>
               </td>
               <td>
-                <p class="text-xs font-weight-bold mb-0">{{ user.profile }}</p>
-                <p class="text-xs text-secondary mb-0">{{ user.category }}</p>
+                <p class="text-xs font-weight-bold mb-0">{{ material.type }}</p>
+                <p class="text-xs text-secondary mb-0">{{ material.description.substring(0, 30) }}</p>
               </td>
               <td class="align-middle text-center text-sm">
-                <soft-badge :color="user.status === 'ACTIVE' ? 'success' : 'danger'" variant="gradient" size="sm">
-                  {{ user.status === 'ACTIVE' ? 'Ativo' : 'Inativo' }}
+                <soft-badge :color="material.status === 'ACTIVE' ? 'success' : 'danger'" variant="gradient" size="sm">
+                  {{ material.status === 'ACTIVE' ? 'Ativo' : 'Inativo' }}
                 </soft-badge>
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold"
-                  >{{ user.createdAt }}</span
+                  >{{ material.createdAt}}</span
                 >
               </td>
               <td class="align-middle">
                 <router-link
-                  :to="{ name: 'Editar Usuário', params: { id: user.id } }"
+                  :to="{ name: 'Editar Material', params: { id: material.id } }"
                   class="text-secondary font-weight-bold text-xs"
                   data-toggle="tooltip"
-                  data-original-title="Editar usuário"
+                  data-original-title="Editar material"
                 >
                   Editar
                 </router-link>
-                <span @click="confirmDelete(user.id)" class="text-danger font-weight-bold text-xs ms-2" style="cursor: pointer;">
+                <span @click="confirmDelete(material.id)" class="text-danger font-weight-bold text-xs ms-2" style="cursor: pointer;">
                   Excluir
                 </span>
               </td>
@@ -90,26 +90,26 @@
 <script>
 import SoftAvatar from "@/components/SoftAvatar.vue";
 import SoftBadge from "@/components/SoftBadge.vue";
+import img1 from "../../assets/img/blank-profile.png";
 import { mapActions } from 'vuex';
 import Swal from "sweetalert2";
-import img1 from "../../../assets/img/blank-profile.png";
 
 export default {
-  name: "users-table",
+  name: "materials-table",
   components: {
     SoftAvatar,
     SoftBadge,
   },
   props: {
-    users: {
+    materials: {
       type: Array,
       required: true,
     },
   },
   methods: {
-    ...mapActions(['deleteUser']),
-    getUserPictureUrl(picture) {
-      return picture ? `http://localhost:3000/uploads/user-pictures/${picture}` : img1;
+    ...mapActions(['deleteMaterial']),
+    getPictureUrl(picture) {
+      return picture ? `http://localhost:3000/uploads/material-images/${picture}` : img1;
     },
     confirmDelete(id) {
       Swal.fire({
@@ -123,10 +123,10 @@ export default {
         cancelButtonText: 'Cancelar'
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await this.deleteUser({ id });
+          await this.deleteMaterial({ id });
           Swal.fire(
             'Excluído!',
-            'O usuário foi excluído.',
+            'O material foi excluído.',
             'success'
           );
         }

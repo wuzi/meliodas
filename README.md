@@ -1,6 +1,6 @@
 # Projeto Gestão
 
-Para iniciar o projeto, utilizie o comando do docker compose:
+Para iniciar o projeto, utilize o comando do docker compose:
 
 ```bash
 docker-compose up

@@ -46,7 +46,7 @@
                   <p class="mx-auto mb-4 text-sm">
                     Não possui uma conta?
                     <router-link
-                      :to="{ name: 'Sign Up' }"
+                      :to="{ name: 'Sign In' }"
                       class="text-success text-gradient font-weight-bold"
                       >Cadastrar</router-link
                     >

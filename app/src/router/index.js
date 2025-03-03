@@ -1,11 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "@/views/v2/Dashboard.vue";
 import UserList from "@/views/v2/UserList.vue";
-import Billing from "@/views/Billing.vue";
-import VirtualReality from "@/views/VirtualReality.vue";
-import Profile from "@/views/Profile.vue";
 import SignIn from "@/views/v2/SignIn.vue";
-import SignUp from "@/views/SignUp.vue";
 import EditUserForm from "@/views/v2/components/EditUserForm.vue";
 import MaterialList from "@/views/v2/MaterialList.vue";
 import EditMaterialForm from "@/views/v2/components/EditMaterialForm.vue";
@@ -62,29 +58,9 @@ const routes = [
     ]
   },
   {
-    path: "/billing",
-    name: "Billing",
-    component: Billing,
-  },
-  {
-    path: "/virtual-reality",
-    name: "Virtual Reality",
-    component: VirtualReality,
-  },
-  {
-    path: "/profile",
-    name: "Profile",
-    component: Profile,
-  },
-  {
     path: "/sign-in",
     name: "Sign In",
     component: SignIn,
-  },
-  {
-    path: "/sign-up",
-    name: "Sign Up",
-    component: SignUp,
   },
 ];
 

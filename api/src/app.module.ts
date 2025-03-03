@@ -10,6 +10,7 @@ import { Material } from './materials/entities/material.entity';
 import { MaterialsModule } from './materials/materials.module';
 import { User } from './users/entities/user.entity';
 import { UsersModule } from './users/users.module';
+import { MaterialImage } from './materials/entities/material-image.entity';
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { UsersModule } from './users/users.module';
       imports: [ConfigModule],
       useFactory: (configService: ConfigService): TypeOrmModuleOptions => ({
         type: 'postgres',
-        entities: [User, Material],
+        entities: [User, Material, MaterialImage],
         namingStrategy: new SnakeNamingStrategy(),
         host: configService.get<string>('DATABASE_HOST') || 'localhost',
         database: configService.get<string>('DATABASE_NAME') || 'postgres',

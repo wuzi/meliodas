@@ -96,11 +96,6 @@ import img1 from "../../../assets/img/blank-profile.png";
 
 export default {
   name: "users-table",
-  data() {
-    return {
-      img1,
-    };
-  },
   components: {
     SoftAvatar,
     SoftBadge,

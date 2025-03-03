@@ -1,10 +1,12 @@
 import {
-  Entity,
   Column,
-  PrimaryGeneratedColumn,
   CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { MaterialImage } from './material-image.entity';
 
 export enum MaterialType {
   Permanent = 'PERMANENT',
@@ -42,6 +44,9 @@ export class Material {
     default: Status.Active,
   })
   status: Status;
+
+  @OneToMany(() => MaterialImage, (image) => image.material, { cascade: true })
+  images: MaterialImage[];
 
   @CreateDateColumn()
   createdAt: Date;

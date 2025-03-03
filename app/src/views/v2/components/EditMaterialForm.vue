@@ -28,6 +28,18 @@
         <label for="description">Descrição</label>
         <textarea v-model="material.description" class="form-control" id="description"></textarea>
       </div>
+      <div class="form-group">
+        <label>Imagens</label>
+        <div class="d-flex flex-wrap">
+          <div v-for="image in material.images" :key="image.id" class="m-2">
+            <img :src="getImageUrl(image.filename)" alt="Material Image" class="img-thumbnail" width="100" height="100" />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="newImages">Adicionar Imagens</label>
+        <input type="file" @change="onFileChange" class="form-control" id="newImages" multiple />
+      </div>
       <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
   </div>
@@ -46,20 +58,34 @@ export default {
         type: 'PERMANENT',
         status: 'ACTIVE',
         description: '',
-      }
+        images: [],
+      },
+      newImages: [],
     }
   },
   methods: {
-    ...mapActions(['editMaterial', 'fetchMaterial']),
+    ...mapActions(['editMaterial', 'fetchMaterial', 'uploadMaterialImage']),
     async submit() {
       await this.editMaterial({ id: this.$route.params.id, material: this.material });
+      if (this.newImages.length > 0) {
+        for (const file of this.newImages) {
+          const image = await this.uploadMaterialImage({ id: this.$route.params.id, file });
+          this.material.images.push(image);
+        }
+      }
       Swal.fire({
         icon: 'success',
         title: 'Sucesso',
         text: 'Material editado com sucesso',
       });
       this.$router.push({ name: 'MaterialList' });
-    }
+    },
+    onFileChange(event) {
+      this.newImages = Array.from(event.target.files);
+    },
+    getImageUrl(filename) {
+      return `http://localhost:3000/uploads/material-images/${filename}`;
+    },
   },
   async mounted() {
     const material = await this.fetchMaterial({ id: this.$route.params.id });

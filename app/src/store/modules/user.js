@@ -30,15 +30,15 @@ const actions = {
     await this.$http.delete(`/users/${id}`);
     commit("removeUser", id);
   },
-  // eslint-disable-next-line no-empty-pattern
-  async uploadProfilePicture({}, { id, file }) {
+  async uploadProfilePicture({ commit }, { id, file }) {
     const formData = new FormData();
     formData.append('file', file);
-    await this.$http.post(`/users/${id}/picture`, formData, {
+    const { data } = await this.$http.post(`/users/${id}/picture`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
+    commit("updateUser", { id, data });
   },
 };
 

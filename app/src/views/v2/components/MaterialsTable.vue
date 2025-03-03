@@ -37,7 +37,7 @@
                 <div class="d-flex px-2 py-1">
                   <div>
                     <soft-avatar
-                      :img="img1"
+                      :img="getPictureUrl(material.images ? material.images[0]?.filename : null)"
                       size="sm"
                       border-radius="lg"
                       class="me-3"
@@ -96,11 +96,6 @@ import Swal from "sweetalert2";
 
 export default {
   name: "materials-table",
-  data() {
-    return {
-      img1,
-    };
-  },
   components: {
     SoftAvatar,
     SoftBadge,
@@ -113,6 +108,9 @@ export default {
   },
   methods: {
     ...mapActions(['deleteMaterial']),
+    getPictureUrl(picture) {
+      return picture ? `http://localhost:3000/uploads/material-images/${picture}` : img1;
+    },
     confirmDelete(id) {
       Swal.fire({
         title: 'Tem certeza?',

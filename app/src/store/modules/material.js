@@ -21,12 +21,23 @@ const actions = {
     return data;
   },
   async editMaterial({ commit }, { id, material }) {
-    const { data } = await this.$http.patch(`/materials/${id}`, material);
+    const { data } = await this.$http.patch(`/materials/${id}`, { ...material, images: undefined });
     commit("updateMaterial", { id, data });
   },
   async deleteMaterial({ commit }, { id }) {
     await this.$http.delete(`/materials/${id}`);
     commit("removeMaterial", id);
+  },
+  async uploadMaterialImage({ commit }, { id, file }) {
+    const formData = new FormData();
+    formData.append('file', file);
+    const { data } = await this.$http.post(`/materials/${id}/images`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    commit("addMaterialImage", { id, data });
+    return data;
   }
 };
 
@@ -45,6 +56,12 @@ const mutations = {
   },
   removeMaterial(state, id) {
     state.materials = state.materials.filter(material => material.id !== id);
+  },
+  addMaterialImage(state, { id, data }) {
+    const index = state.materials.findIndex(material => material.id === id);
+    if (index !== -1) {
+      state.materials[index].images.push(data);
+    }
   }
 };
 

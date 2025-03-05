@@ -41,7 +41,8 @@ export class MaterialsService {
     return this.materialRepository.update(id, updateMaterialDto);
   }
 
-  remove(id: string) {
+  async remove(id: string) {
+    await this.materialImageRepository.delete({ material: { id } });
     return this.materialRepository.delete(id);
   }
 

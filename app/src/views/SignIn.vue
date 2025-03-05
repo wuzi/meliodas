@@ -63,7 +63,7 @@
                   :style="{
                     backgroundImage:
                       'url(' +
-                      require('@/assets/img/curved-images/curved9.jpg') +
+                      require('@/assets/img/curved9.jpg') +
                       ')',
                   }"
                 ></div>

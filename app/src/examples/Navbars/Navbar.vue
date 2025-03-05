@@ -18,7 +18,7 @@
         >
         </div>
         <ul class="navbar-nav justify-content-end">
-          <li class="nav-item d-flex align-items-center">
+          <li class="nav-item d-flex align-items-center" v-if="!userName">
             <router-link
               :to="{ name: 'Sign In' }"
               class="px-0 nav-link font-weight-bold"
@@ -32,6 +32,22 @@
                 >يسجل دخول</span
               >
               <span v-else class="d-sm-inline d-none">Entrar </span>
+            </router-link>
+          </li>
+          <li class="nav-item d-flex align-items-center" v-if="userName">
+            <router-link
+              :to="{ name: 'Dashboard' }"
+              class="px-0 nav-link font-weight-bold"
+              :class="textWhite ? textWhite : 'text-body'"
+            >
+              <i
+                class="fa fa-user"
+                :class="this.$store.state.isRTL ? 'ms-sm-2' : 'me-sm-1'"
+              ></i>
+              <span v-if="this.$store.state.isRTL" class="d-sm-inline d-none"
+                >الملف الشخصي</span
+              >
+              <span v-else class="d-sm-inline d-none">{{ userName }}</span>
             </router-link>
           </li>
           <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -83,6 +99,9 @@ export default {
   computed: {
     currentRouteName() {
       return this.$route.name;
+    },
+    userName() {
+      return this.$store.state.auth.user.name;
     },
   },
   updated() {

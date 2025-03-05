@@ -11,6 +11,7 @@ import { MaterialsModule } from './materials/materials.module';
 import { User } from './users/entities/user.entity';
 import { UsersModule } from './users/users.module';
 import { MaterialImage } from './materials/entities/material-image.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { MaterialImage } from './materials/entities/material-image.entity';
     }),
     UsersModule,
     MaterialsModule,
+    AuthModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],

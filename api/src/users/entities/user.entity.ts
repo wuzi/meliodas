@@ -4,7 +4,11 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   CreateDateColumn,
+  AfterLoad,
+  BeforeInsert,
+  BeforeUpdate,
 } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 export enum UserCategory {
   Student = 'STUDENT',
@@ -82,4 +86,26 @@ export class User {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  private tempPassword!: string;
+
+  @AfterLoad()
+  private loadTempPassword(): void {
+    this.tempPassword = this.password;
+  }
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  private async encryptPassword(): Promise<void> {
+    if (this.tempPassword == this.password) {
+      return;
+    }
+
+    const salt = bcrypt.genSaltSync(10);
+    this.password = await bcrypt.hash(this.password, salt);
+  }
+
+  public comparePassword(password: string): boolean {
+    return bcrypt.compareSync(password, this.password);
+  }
 }

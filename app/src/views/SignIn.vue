@@ -13,20 +13,22 @@
                   <p class="mb-0">Entre com seu email para acessar sua conta</p>
                 </div>
                 <div class="card-body">
-                  <form role="form" class="text-start">
+                  <form role="form" class="text-start" @submit.prevent="submit">
                     <label>Email</label>
-                    <soft-input
+                    <input
                       id="email"
                       type="email"
                       placeholder="Email"
                       name="email"
+                      v-model="email"
                     />
                     <label>Senha</label>
-                    <soft-input
+                    <input
                       id="password"
                       type="password"
                       placeholder="Senha"
                       name="password"
+                      v-model="password"
                     />
                     <soft-switch id="rememberMe" name="rememberMe" checked>
                       Lembrar-me
@@ -79,17 +81,16 @@
 
 <script>
 import AppFooter from "@/examples/PageLayout/Footer.vue";
-import SoftInput from "@/components/SoftInput.vue";
 import SoftSwitch from "@/components/SoftSwitch.vue";
 import SoftButton from "@/components/SoftButton.vue";
 const body = document.getElementsByTagName("body")[0];
-import { mapMutations } from "vuex";
+import { mapMutations, mapActions } from "vuex";
+import Swal from "sweetalert2";
 
 export default {
   name: "SignIn",
   components: {
     AppFooter,
-    SoftInput,
     SoftSwitch,
     SoftButton,
   },
@@ -103,8 +104,27 @@ export default {
     this.toggleHideConfig();
     body.classList.add("bg-gray-100");
   },
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
   methods: {
     ...mapMutations(["toggleEveryDisplay", "toggleHideConfig"]),
+    ...mapActions(["login"]),
+    async submit() {
+      try {
+        await this.login({ email: this.email, password: this.password });
+        this.$router.push("/");
+      } catch (err) {
+        if (err.response) {
+          Swal.fire("Ops!", "Email ou senha incorreto.", "error");
+        } else {
+          Swal.fire("Ops!", "Não foi possível conectar com o servidor.", "error");
+        }
+      }
+    }
   },
 };
 </script>

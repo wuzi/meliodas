@@ -17,7 +17,6 @@ export class UsersService {
   }
 
   create(createUserDto: CreateUserDto) {
-    // TODO: encrypt password
     return this.userRepository.save(createUserDto);
   }
 
@@ -29,6 +28,10 @@ export class UsersService {
 
   findOne(id: string) {
     return this.userRepository.findOne({ where: { id } });
+  }
+
+  findOneByEmail(email: string) {
+    return this.userRepository.findOne({ where: { email } });
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {

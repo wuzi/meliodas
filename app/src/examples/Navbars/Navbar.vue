@@ -47,7 +47,7 @@
               <span v-if="this.$store.state.isRTL" class="d-sm-inline d-none"
                 >{{ userName }}</span
               >
-              <span v-else class="d-sm-inline d-none">{{ userName }}</span>
+              <span v-else class="d-sm-inline d-none">{{ userName }} ({{ userProfile }})</span>
             </router-link>
           </li>
           <li class="nav-item d-flex align-items-center">
@@ -124,6 +124,9 @@ export default {
     },
     userName() {
       return this.$store.state.auth.user.name;
+    },
+    userProfile() {
+      return this.$store.state.auth.user.profile;
     },
   },
   updated() {

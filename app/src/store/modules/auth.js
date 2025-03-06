@@ -1,6 +1,7 @@
 const state = () => ({
   user: {
-    name: localStorage.getItem("userName")
+    name: localStorage.getItem("userName"),
+    profile: localStorage.getItem("userProfile")
   },
   accessToken: localStorage.getItem("accessToken")
 });
@@ -38,14 +39,16 @@ const mutations = {
     state.accessToken = accessToken;
 
     localStorage.setItem("userName", user.name);
+    localStorage.setItem("userProfile", user.profile);
     localStorage.setItem("accessToken", accessToken);
   },
 
   logout(state) {
-    state.user = { name: null };
+    state.user = { name: null, profile: null };
     state.accessToken = null;
 
     localStorage.removeItem("userName");
+    localStorage.removeItem("userProfile");
     localStorage.removeItem("accessToken");
   }
 };

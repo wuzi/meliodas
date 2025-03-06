@@ -3,6 +3,7 @@ export class LoginResponseDto {
   public user!: {
     id: string;
     name: string;
-    email: string | null;
+    email: string;
+    profile: string;
   };
 }

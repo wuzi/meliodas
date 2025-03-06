@@ -15,7 +15,7 @@
                 <div class="card-body">
                   <form role="form" class="text-start" @submit.prevent="submit">
                     <label>Email</label>
-                    <input
+                    <soft-input
                       id="email"
                       type="email"
                       placeholder="Email"
@@ -23,7 +23,7 @@
                       v-model="email"
                     />
                     <label>Senha</label>
-                    <input
+                    <soft-input
                       id="password"
                       type="password"
                       placeholder="Senha"
@@ -81,6 +81,7 @@
 
 <script>
 import AppFooter from "@/examples/PageLayout/Footer.vue";
+import SoftInput from "@/components/SoftInput.vue";
 import SoftSwitch from "@/components/SoftSwitch.vue";
 import SoftButton from "@/components/SoftButton.vue";
 const body = document.getElementsByTagName("body")[0];
@@ -91,6 +92,7 @@ export default {
   name: "SignIn",
   components: {
     AppFooter,
+    SoftInput,
     SoftSwitch,
     SoftButton,
   },

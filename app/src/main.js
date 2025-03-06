@@ -16,6 +16,24 @@ store.$http = axios.create({
   },
 });
 
+router.beforeEach(async (to, from, next) => {
+  if (from.name == undefined) {
+    try {
+      await store.$http.get("auth/user");
+    } catch (err) {
+      store.commit("logout");
+    }
+  }
+
+  const toName = to.name.toLowerCase();
+  if (toName !== "sign in" && !store.state.auth.accessToken) {
+    next({name: "Sign In"});
+  } else {
+    next();
+  }
+});
+
+
 const appInstance = createApp(App);
 appInstance.use(store);
 appInstance.use(router);

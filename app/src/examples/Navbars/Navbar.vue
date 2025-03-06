@@ -34,7 +34,7 @@
               <span v-else class="d-sm-inline d-none">Entrar </span>
             </router-link>
           </li>
-          <li class="nav-item d-flex align-items-center" v-if="userName">
+          <li class="nav-item d-flex align-items-center me-3" v-else>
             <router-link
               :to="{ name: 'Dashboard' }"
               class="px-0 nav-link font-weight-bold"
@@ -45,10 +45,27 @@
                 :class="this.$store.state.isRTL ? 'ms-sm-2' : 'me-sm-1'"
               ></i>
               <span v-if="this.$store.state.isRTL" class="d-sm-inline d-none"
-                >الملف الشخصي</span
+                >{{ userName }}</span
               >
               <span v-else class="d-sm-inline d-none">{{ userName }}</span>
             </router-link>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <a
+              href="#"
+              @click="logout"
+              class="px-0 nav-link font-weight-bold"
+              :class="textWhite ? textWhite : 'text-body'"
+            >
+              <i
+                class="fa fa-times"
+                :class="this.$store.state.isRTL ? 'ms-sm-2' : 'me-sm-1'"
+              ></i>
+              <span v-if="this.$store.state.isRTL" class="d-sm-inline d-none"
+                >تسجيل خروج</span
+              >
+              <span v-else class="d-sm-inline d-none">Sair</span>
+            </a>
           </li>
           <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
             <a
@@ -92,6 +109,11 @@ export default {
       this.toggleSidebarColor("bg-white");
       this.navbarMinimize();
     },
+
+    logout() {
+      this.$store.commit("logout");
+      this.$router.push("/sign-in");
+    }
   },
   components: {
     Breadcrumbs,

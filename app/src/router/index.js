@@ -58,6 +58,11 @@ const routes = [
     ]
   },
   {
+    path: "/statments",
+    name: "Declarações",
+    component: () => import("@/views/StatmentList.vue"),
+  },
+  {
     path: "/sign-in",
     name: "Sign In",
     component: SignIn,

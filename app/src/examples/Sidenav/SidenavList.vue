@@ -14,12 +14,19 @@
       <li class="nav-item">
         <sidenav-collapse navText="Usuários" :to="{ name: 'Usuários' }">
           <template #icon>
-            <office />
+            <customer-support />
           </template>
         </sidenav-collapse>
       </li>
       <li class="nav-item">
         <sidenav-collapse navText="Materiais" :to="{ name: 'Materiais' }">
+          <template #icon>
+            <document />
+          </template>
+        </sidenav-collapse>
+      </li>
+      <li class="nav-item">
+        <sidenav-collapse navText="Declarações" :to="{ name: 'Declarações' }">
           <template #icon>
             <office />
           </template>
@@ -32,6 +39,8 @@
 import SidenavCollapse from "./SidenavCollapse.vue";
 import Shop from "../../components/Icon/Shop.vue";
 import Office from "../../components/Icon/Office.vue";
+import Document from "../../components/Icon/Document.vue";
+import CustomerSupport from "../../components/Icon/CustomerSupport.vue";
 
 export default {
   name: "SidenavList",
@@ -49,6 +58,8 @@ export default {
     SidenavCollapse,
     Shop,
     Office,
+    CustomerSupport,
+    Document,
   },
   methods: {
     getRoute() {

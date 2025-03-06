@@ -44,7 +44,7 @@
                     </div>
                   </form>
                 </div>
-                <div class="px-1 pt-0 text-center card-footer px-lg-2">
+                <!-- <div class="px-1 pt-0 text-center card-footer px-lg-2">
                   <p class="mx-auto mb-4 text-sm">
                     Não possui uma conta?
                     <router-link
@@ -53,7 +53,7 @@
                       >Cadastrar</router-link
                     >
                   </p>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="col-md-6">

@@ -1,9 +1,23 @@
+const MaterialTypeTranslations = {
+  'PERMANENT': 'Permanente',
+  'CONSUMABLE': 'Consumível',
+};
+
+const MaterialStatusTranslations = {
+  'ACTIVE': 'Ativo',
+  'INACTIVE': 'Inativo',
+};
+
 const state = () => ({
   materials: [],
 });
 
 const getters = {
-  materials: (state) => state.materials,
+  materials: (state) => state.materials.map(material => ({
+    ...material,
+    type: MaterialTypeTranslations[material.type] || material.type,
+    status: MaterialStatusTranslations[material.status] || material.status,
+  })),
 };
 
 const actions = {

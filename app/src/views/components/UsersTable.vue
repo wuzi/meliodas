@@ -57,8 +57,8 @@
                 <p class="text-xs text-secondary mb-0">{{ user.category }}</p>
               </td>
               <td class="align-middle text-center text-sm">
-                <soft-badge :color="user.status === 'ACTIVE' ? 'success' : 'danger'" variant="gradient" size="sm">
-                  {{ user.status === 'ACTIVE' ? 'Ativo' : 'Inativo' }}
+                <soft-badge :color="user.status.toLowerCase() === 'ativo' ? 'success' : 'danger'" variant="gradient" size="sm">
+                  {{ user.status }}
                 </soft-badge>
               </td>
               <td class="align-middle text-center">

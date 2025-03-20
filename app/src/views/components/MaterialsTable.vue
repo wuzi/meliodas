@@ -57,8 +57,8 @@
                 <p class="text-xs text-secondary mb-0">{{ material.description.substring(0, 30) }}</p>
               </td>
               <td class="align-middle text-center text-sm">
-                <soft-badge :color="material.status === 'ACTIVE' ? 'success' : 'danger'" variant="gradient" size="sm">
-                  {{ material.status === 'ACTIVE' ? 'Ativo' : 'Inativo' }}
+                <soft-badge :color="material.status.toLowerCase() === 'ativo' ? 'success' : 'danger'" variant="gradient" size="sm">
+                  {{ material.status }}
                 </soft-badge>
               </td>
               <td class="align-middle text-center">

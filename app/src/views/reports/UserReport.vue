@@ -2,7 +2,9 @@
   <div class="report-standalone-page">
     <div class="report-container">
       <div class="report-header">
-        <h1>Relatório de Usuários</h1>
+        <img src="@/assets/img/ufsc-logo.png" alt="UFSC Logo" class="report-logo">
+        <h5>Universidade Federal de Santa Catarina - Câmpus Araranguá</h5>
+        <p>Relatório de Usuários</p>
         <p>Data de geração: {{ currentDate }}</p>
         <button @click="printReport" class="print-button no-print">Imprimir Relatório</button>
         <router-link to="/users" class="back-button no-print">Voltar para lista</router-link>
@@ -124,6 +126,11 @@ body.report-view .main-content {
 .report-header {
   text-align: center;
   margin-bottom: 20px;
+}
+
+.report-logo {
+  width: 100px;
+  margin-bottom: 10px;
 }
 
 .report-table {

@@ -130,7 +130,7 @@ body.report-view .main-content {
 
 .report-container {
   font-family: Arial, sans-serif;
-  padding: 20px;
+  padding: 100px;
   color: #000;
 }
 

@@ -1,9 +1,33 @@
+const UserCategoryTranslations = {
+  'STUDENT': 'Estudante',
+  'COLLABORATOR': 'Colaborador',
+  'PROFESSOR': 'Professor',
+  'OTHER': 'Outro',
+};
+
+const UserProfileTranslations = {
+  'ADMIN': 'Administrador',
+  'RESEARCH_COORDINATOR': 'Coordenador de Pesquisa',
+  'EXTENSION_COORDINATOR': 'Coordenador de Extensão',
+  'USER': 'Usuário',
+};
+
+const UserStatusTranslations = {
+  'ACTIVE': 'Ativo',
+  'INACTIVE': 'Inativo',
+};
+
 const state = () => ({
   users: [],
 });
 
 const getters = {
-  users: (state) => state.users,
+  users: (state) => state.users.map(user => ({
+    ...user,
+    category: UserCategoryTranslations[user.category] || user.category,
+    profile: UserProfileTranslations[user.profile] || user.profile,
+    status: UserStatusTranslations[user.status] || user.status,
+  })),
 };
 
 const actions = {

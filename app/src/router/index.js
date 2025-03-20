@@ -35,6 +35,11 @@ const routes = [
         name: "Editar Usuário",
         component: EditUserForm,
       },
+      {
+        path: "report",
+        name: "Relatório de Usuários",
+        component: () => import("@/views/reports/UserReport.vue"),
+      },
     ],
   },
   {

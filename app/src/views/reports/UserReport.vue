@@ -15,14 +15,14 @@
           <tr>
             <th>Nome</th>
             <th>Email</th>
-            <th>Função</th>
+            <th>Curso</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(user, index) in users" :key="index">
-            <td>{{ user.name || '' }}</td>
-            <td>{{ user.email || '' }}</td>
-            <td>{{ user.category || '' }}</td>
+            <td>{{ user.name || 'Não Informado' }}</td>
+            <td>{{ user.email || 'Não Informado' }}</td>
+            <td>{{ user.course || 'Não Informado' }}</td>
           </tr>
         </tbody>
       </table>

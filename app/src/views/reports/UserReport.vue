@@ -50,6 +50,8 @@ export default {
     }
   },
   async mounted() {
+    document.title = 'relatorio_de_usuarios_' + new Date().toLocaleDateString();
+
     // Hide app's navbar and sidebar when in report view
     document.body.classList.add('report-view');
     

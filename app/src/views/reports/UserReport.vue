@@ -57,6 +57,9 @@ export default {
     if (!this.users || this.users.length === 0) {
       await this.fetchUsers();
     }
+
+    // Print the report automatically
+    this.printReport();
   },
   beforeUnmount() {
     // Remove the class when component is destroyed

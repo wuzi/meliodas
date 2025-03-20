@@ -24,7 +24,7 @@ export enum UserProfile {
   User = 'USER',
 }
 
-export enum Status {
+export enum UserStatus {
   Active = 'ACTIVE',
   Inactive = 'INACTIVE',
 }
@@ -73,10 +73,10 @@ export class User {
 
   @Column({
     type: 'enum',
-    enum: Status,
-    default: Status.Active,
+    enum: UserStatus,
+    default: UserStatus.Active,
   })
-  status: Status;
+  status: UserStatus;
 
   @Column()
   password: string;

@@ -1,8 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '../users/entities/user.entity';
+import {
+  User,
+  UserCategory,
+  UserProfile,
+  UserStatus,
+} from '../users/entities/user.entity';
 import { UsersService as UserService } from '../users/users.service';
 import { LoginResponseDto } from './dto/login-response.dto';
+import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
@@ -33,5 +39,27 @@ export class AuthService {
       },
       accessToken: this.jwtService.sign(payload),
     };
+  }
+
+  async register(loginDto: LoginDto): Promise<LoginResponseDto> {
+    let user = await this.usersService.findOneByEmail(loginDto.email);
+
+    if (user) {
+      throw new UnauthorizedException('Email already in use');
+    }
+
+    user = await this.usersService.create({
+      email: loginDto.email,
+      password: loginDto.password,
+      name: loginDto.email.split('@')[0],
+      phone: '',
+      profile: UserProfile.User,
+      registrationNumber: '',
+      category: UserCategory.Other,
+      course: '',
+      status: UserStatus.Active,
+    });
+
+    return this.login(user);
   }
 }

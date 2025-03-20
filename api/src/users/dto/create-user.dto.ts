@@ -1,4 +1,4 @@
-import { UserProfile, UserCategory, Status } from '../entities/user.entity';
+import { UserProfile, UserCategory, UserStatus } from '../entities/user.entity';
 
 export class CreateUserDto {
   name: string;
@@ -9,6 +9,6 @@ export class CreateUserDto {
   category: UserCategory;
   course: string;
   department?: string;
-  status: Status;
+  status: UserStatus;
   password: string;
 }

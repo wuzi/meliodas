@@ -90,6 +90,14 @@ body.report-view .main-content {
 }
 
 @media print {
+  @page {
+    margin: 0;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
   body * {
     visibility: hidden;
   }
@@ -169,16 +177,5 @@ body.report-view .main-content {
 
 .back-button {
   background-color: #2196F3;
-}
-
-@media print {
-  .no-print {
-    display: none !important;
-  }
-  
-  .report-container {
-    padding: 0;
-    margin: 0;
-  }
 }
 </style>

@@ -14,15 +14,23 @@
         <thead>
           <tr>
             <th>Nome</th>
-            <th>Email</th>
+            <th>Matrícula</th>
             <th>Curso</th>
+            <th>Perfil</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(user, index) in users" :key="index">
-            <td>{{ user.name || 'Não Informado' }}</td>
-            <td>{{ user.email || 'Não Informado' }}</td>
-            <td>{{ user.course || 'Não Informado' }}</td>
+            <td>{{ user.name || 'N/D' }}</td>
+            <td>{{ user.registrationNumber || 'N/D' }}</td>
+            <td>{{ user.course || 'N/D' }}</td>
+            <td>{{ user.profile || 'N/D' }}</td>
+            <td>{{ user.email || 'N/D' }}</td>
+            <td>{{ user.phone || 'N/D' }}</td>
+            <td>{{ user.status || 'N/D' }}</td>
           </tr>
         </tbody>
       </table>
@@ -149,6 +157,7 @@ body.report-view .main-content {
 .report-table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 12px;
 }
 
 .report-table th,

@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { FindAllUsersDto } from './dto/find-all-users.dto';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 
@@ -21,10 +22,22 @@ export class UsersService {
     return this.userRepository.save(user);
   }
 
-  findAll() {
-    return this.userRepository.find({
-      order: { createdAt: 'DESC' },
-    });
+  findAll(findAllUsersDto?: FindAllUsersDto) {
+    const { profile, category } = findAllUsersDto || {};
+
+    const queryBuilder = this.userRepository.createQueryBuilder('user');
+
+    if (profile) {
+      queryBuilder.andWhere('user.profile = :profile', { profile });
+    }
+
+    if (category) {
+      queryBuilder.andWhere('user.category = :category', { category });
+    }
+
+    queryBuilder.orderBy('user.createdAt', 'DESC');
+
+    return queryBuilder.getMany();
   }
 
   findOne(id: string) {

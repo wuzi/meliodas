@@ -36,8 +36,8 @@ const actions = {
     commit("addUser", data);
     return data;
   },
-  async fetchUsers({ commit }) {
-    const { data } = await this.$http.get(`/users`);
+  async fetchUsers({ commit }, { params = {} } = {}) {
+    const { data } = await this.$http.get('/users', { params });
     commit("setUsers", data);
   },
   async editUser({ commit }, { id, user }) {

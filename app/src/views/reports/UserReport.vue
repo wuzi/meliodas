@@ -6,7 +6,7 @@
         <h5>Universidade Federal de Santa Catarina - Câmpus Araranguá</h5>
         <p>Relatório de Usuários</p>
         <p>Data de geração: {{ currentDate }}</p>
-        <button @click="printReport" class="print-button no-print">Imprimir Relatório</button>
+                <button @click="printReport" class="print-button no-print">Imprimir Relatório</button>
         <router-link to="/users" class="back-button no-print">Voltar para lista</router-link>
       </div>
       
@@ -45,17 +45,24 @@ export default {
   name: 'UserReport',
   data() {
     return {
-      currentDate: new Date().toLocaleDateString()
+      currentDate: new Date().toLocaleDateString(),
+      filters: {
+        profile: '',
+        category: ''
+      }
     };
   },
   computed: {
-    ...mapGetters(['users'])
+    ...mapGetters(['users']),
+    hasFilters() {
+      return this.filters.profile || this.filters.category;
+    }
   },
   methods: {
     ...mapActions(['fetchUsers']),
     printReport() {
       window.print();
-    }
+        }
   },
   async mounted() {
     document.title = 'relatorio_de_usuarios_' + new Date().toLocaleDateString();
@@ -63,10 +70,16 @@ export default {
     // Hide app's navbar and sidebar when in report view
     document.body.classList.add('report-view');
     
-    // Fetch users if needed
-    if (!this.users || this.users.length === 0) {
-      await this.fetchUsers();
-    }
+    // Get filters from URL query parameters
+    this.filters.profile = this.$route.query.profile || '';
+    this.filters.category = this.$route.query.category || '';
+    
+    // Fetch users with the same filters
+    const params = {};
+    if (this.filters.profile) params.profile = this.filters.profile;
+    if (this.filters.category) params.category = this.filters.category;
+    
+    await this.fetchUsers({ params });
 
     // Print the report automatically
     this.printReport();

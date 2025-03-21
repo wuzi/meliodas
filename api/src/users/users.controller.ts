@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -14,6 +15,7 @@ import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { FindAllUsersDto } from './dto/find-all-users.dto';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -26,8 +28,8 @@ export class UsersController {
   }
 
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  findAll(@Query() findAllUsersDto: FindAllUsersDto) {
+    return this.usersService.findAll(findAllUsersDto);
   }
 
   @Get(':id')

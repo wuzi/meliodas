@@ -60,6 +60,11 @@ const routes = [
         name: "Editar Material",
         component: EditMaterialForm,
       },
+      {
+        path: "report",
+        name: "Relatório de Materiais",
+        component: () => import("@/views/reports/MaterialReport.vue"),
+      },
     ]
   },
   {

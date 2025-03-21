@@ -3,6 +3,9 @@
     <router-link to="/materials/create" class="btn btn-primary mb-2">
       Novo material
     </router-link>
+    <router-link to="/materials/report" target="_blank" class="btn btn-secondary mb-2 ms-2">
+      Baixar relatório
+    </router-link>
     <div class="row">
       <div class="col-12">
         <materials-table :materials="materials" />

@@ -3,6 +3,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateMaterialDto } from './dto/create-material.dto';
 import { UpdateMaterialDto } from './dto/update-material.dto';
+import { FindAllMaterialsDto } from './dto/find-all-materials.dto';
 import { Material } from './entities/material.entity';
 import { MaterialImage } from './entities/material-image.entity';
 
@@ -23,11 +24,19 @@ export class MaterialsService {
     return this.materialRepository.save(createMaterialDto);
   }
 
-  findAll() {
-    return this.materialRepository.find({
-      order: { createdAt: 'DESC' },
-      relations: ['images'],
-    });
+  findAll(findAllMaterialsDto?: FindAllMaterialsDto) {
+    const { type } = findAllMaterialsDto || {};
+
+    const queryBuilder = this.materialRepository
+      .createQueryBuilder('material')
+      .leftJoinAndSelect('material.images', 'images')
+      .orderBy('material.createdAt', 'DESC');
+
+    if (type) {
+      queryBuilder.andWhere('material.type = :type', { type });
+    }
+
+    return queryBuilder.getMany();
   }
 
   findOne(id: string) {

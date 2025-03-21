@@ -8,6 +8,7 @@ import {
   Delete,
   UseInterceptors,
   UploadedFile,
+  Query,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -15,6 +16,7 @@ import { extname } from 'path';
 import { MaterialsService } from './materials.service';
 import { CreateMaterialDto } from './dto/create-material.dto';
 import { UpdateMaterialDto } from './dto/update-material.dto';
+import { FindAllMaterialsDto } from './dto/find-all-materials.dto';
 
 @Controller('materials')
 export class MaterialsController {
@@ -26,8 +28,8 @@ export class MaterialsController {
   }
 
   @Get()
-  findAll() {
-    return this.materialsService.findAll();
+  findAll(@Query() findAllMaterialsDto: FindAllMaterialsDto) {
+    return this.materialsService.findAll(findAllMaterialsDto);
   }
 
   @Get(':id')

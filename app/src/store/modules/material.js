@@ -25,8 +25,8 @@ const actions = {
     const { data } = await this.$http.post(`/materials`, material);
     commit("addMaterial", data);
   },
-  async fetchMaterials({ commit }) {
-    const { data } = await this.$http.get(`/materials`);
+  async fetchMaterials({ commit }, { params = {} } = {}) {
+    const { data } = await this.$http.get(`/materials`, { params });
     commit("setMaterials", data);
   },
   async fetchMaterial({ commit }, { id }) {

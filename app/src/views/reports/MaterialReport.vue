@@ -39,11 +39,17 @@ export default {
   name: 'MaterialReport',
   data() {
     return {
-      currentDate: new Date().toLocaleDateString()
+      currentDate: new Date().toLocaleDateString(),
+      filters: {
+        type: ''
+      }
     };
   },
   computed: {
-    ...mapGetters(['materials'])
+    ...mapGetters(['materials']),
+    hasFilters() {
+      return this.filters.type;
+    }
   },
   methods: {
     ...mapActions(['fetchMaterials']),
@@ -54,10 +60,13 @@ export default {
   async mounted() {
     document.title = 'relatorio_de_materiais_' + new Date().toLocaleDateString();
     document.body.classList.add('report-view');
+
+    this.filters.type = this.$route.query.type || '';
+
+    const params = {};
+    if (this.filters.type) params.type = this.filters.type;
     
-    if (!this.materials || this.materials.length === 0) {
-      await this.fetchMaterials();
-    }
+    await this.fetchMaterials({ params });
 
     this.printReport();
   },

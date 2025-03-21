@@ -17,8 +17,6 @@
             <th>Matrícula</th>
             <th>Curso</th>
             <th>Perfil</th>
-            <th>Email</th>
-            <th>Telefone</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -28,8 +26,6 @@
             <td>{{ user.registrationNumber || 'N/D' }}</td>
             <td>{{ user.course || 'N/D' }}</td>
             <td>{{ user.profile || 'N/D' }}</td>
-            <td>{{ user.email || 'N/D' }}</td>
-            <td>{{ user.phone || 'N/D' }}</td>
             <td>{{ user.status || 'N/D' }}</td>
           </tr>
         </tbody>

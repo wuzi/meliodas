@@ -63,7 +63,7 @@
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold"
-                  >{{ user.createdAt }}</span
+                  :title="formatDate(user.createdAt)">{{ getRelativeTime(user.createdAt) }}</span
                 >
               </td>
               <td class="align-middle">
@@ -93,6 +93,12 @@ import SoftBadge from "@/components/SoftBadge.vue";
 import { mapActions } from 'vuex';
 import Swal from "sweetalert2";
 import img1 from "../../assets/img/blank-profile.png";
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/pt-br';
+
+dayjs.extend(relativeTime);
+dayjs.locale('pt-br');
 
 export default {
   name: "users-table",
@@ -110,6 +116,12 @@ export default {
     ...mapActions(['deleteUser']),
     getUserPictureUrl(picture) {
       return picture ? `http://localhost:3000/uploads/user-pictures/${picture}` : img1;
+    },
+    formatDate(date) {
+      return dayjs(date).format('DD/MM/YYYY HH:mm');
+    },
+    getRelativeTime(date) {
+      return dayjs(date).fromNow();
     },
     confirmDelete(id) {
       Swal.fire({

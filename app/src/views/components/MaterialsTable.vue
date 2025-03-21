@@ -11,7 +11,7 @@
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >
-                Usuário
+                Material
               </th>
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
@@ -63,7 +63,7 @@
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold"
-                  >{{ material.createdAt}}</span
+                  :title="formatDate(material.createdAt)">{{ getRelativeTime(material.createdAt) }}</span
                 >
               </td>
               <td class="align-middle">
@@ -93,6 +93,12 @@ import SoftBadge from "@/components/SoftBadge.vue";
 import img1 from "../../assets/img/blank-material.png";
 import { mapActions } from 'vuex';
 import Swal from "sweetalert2";
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/pt-br';
+
+dayjs.extend(relativeTime);
+dayjs.locale('pt-br');
 
 export default {
   name: "materials-table",
@@ -110,6 +116,12 @@ export default {
     ...mapActions(['deleteMaterial']),
     getPictureUrl(picture) {
       return picture ? `http://localhost:3000/uploads/material-images/${picture}` : img1;
+    },
+    formatDate(date) {
+      return dayjs(date).format('DD/MM/YYYY HH:mm');
+    },
+    getRelativeTime(date) {
+      return dayjs(date).fromNow();
     },
     confirmDelete(id) {
       Swal.fire({

@@ -90,7 +90,7 @@
 <script>
 import SoftAvatar from "@/components/SoftAvatar.vue";
 import SoftBadge from "@/components/SoftBadge.vue";
-import img1 from "../../assets/img/blank-profile.png";
+import img1 from "../../assets/img/blank-material.png";
 import { mapActions } from 'vuex';
 import Swal from "sweetalert2";
 

@@ -5,7 +5,7 @@ import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 import { UsersService } from './users/users.service';
 import { MaterialsService } from './materials/materials.service';
-import { faker } from '@faker-js/faker';
+import { Faker, pt_BR, de_AT, de, en, base } from '@faker-js/faker';
 import {
   UserCategory,
   UserProfile,
@@ -37,6 +37,10 @@ export class AppController {
   async populate() {
     const users = [];
     const materials = [];
+
+    const faker = new Faker({
+      locale: [pt_BR, de_AT, de, en, base],
+    });
 
     // Create 10 random users
     for (let i = 0; i < 10; i++) {

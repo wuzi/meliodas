@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 import { UsersService } from './users/users.service';

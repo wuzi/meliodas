@@ -13,7 +13,7 @@ export enum MaterialType {
   Consumable = 'CONSUMABLE',
 }
 
-export enum Status {
+export enum MaterialStatus {
   Active = 'ACTIVE',
   Inactive = 'INACTIVE',
 }
@@ -40,10 +40,10 @@ export class Material {
 
   @Column({
     type: 'enum',
-    enum: Status,
-    default: Status.Active,
+    enum: MaterialStatus,
+    default: MaterialStatus.Active,
   })
-  status: Status;
+  status: MaterialStatus;
 
   @OneToMany(() => MaterialImage, (image) => image.material, { cascade: true })
   images: MaterialImage[];

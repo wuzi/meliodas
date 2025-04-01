@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateMaterialDto } from './dto/create-material.dto';
 import { UpdateMaterialDto } from './dto/update-material.dto';
 import { FindAllMaterialsDto } from './dto/find-all-materials.dto';
-import { Material } from './entities/material.entity';
+import { Material, MaterialStatus } from './entities/material.entity';
 import { MaterialImage } from './entities/material-image.entity';
 
 @Injectable()
@@ -17,7 +17,9 @@ export class MaterialsService {
   ) {}
 
   count() {
-    return this.materialRepository.count();
+    return this.materialRepository.count({
+      where: { status: MaterialStatus.Active },
+    });
   }
 
   create(createMaterialDto: CreateMaterialDto) {

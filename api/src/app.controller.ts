@@ -8,7 +8,10 @@ import {
   UserProfile,
   UserStatus,
 } from './users/entities/user.entity';
-import { MaterialType, Status } from './materials/entities/material.entity';
+import {
+  MaterialType,
+  MaterialStatus,
+} from './materials/entities/material.entity';
 
 @Controller()
 export class AppController {
@@ -63,7 +66,7 @@ export class AppController {
         description: faker.commerce.productDescription(),
         type: faker.helpers.arrayElement(Object.values(MaterialType)),
         patrimonyNumber: faker.string.numeric(6),
-        status: Status.Active,
+        status: MaterialStatus.Active,
       });
       materials.push(material);
     }

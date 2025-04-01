@@ -4,7 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { FindAllUsersDto } from './dto/find-all-users.dto';
 import { Repository } from 'typeorm';
-import { User } from './entities/user.entity';
+import { User, UserStatus } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
@@ -14,7 +14,7 @@ export class UsersService {
   ) {}
 
   count() {
-    return this.userRepository.count();
+    return this.userRepository.count({ where: { status: UserStatus.Active } });
   }
 
   create(createUserDto: CreateUserDto) {

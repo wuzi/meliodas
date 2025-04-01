@@ -22,19 +22,6 @@
             </div>
             <div class="col-12 col-md-6">
               <div class="form-group">
-                <label for="registration">Registro no Patrimônio UFSC</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="registration"
-                  required
-                  placeholder="Ex: 123456"
-                  v-model="material.patrimonyNumber"
-                />
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="form-group">
                 <label for="type">Tipo</label>
                 <select class="form-select" id="type" required v-model="material.type">
                   <option value="PERMANENT">Permanente</option>
@@ -49,6 +36,19 @@
                   <option value="ACTIVE">Ativo</option>
                   <option value="INACTIVE">Inativo</option>
                 </select>
+              </div>
+            </div>
+            <div class="col-12 col-md-6" v-show="material.type === 'PERMANENT'">
+              <div class="form-group">
+                <label for="registration">Registro no Patrimônio UFSC</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="registration"
+                  required
+                  placeholder="Ex: 123456"
+                  v-model="material.patrimonyNumber"
+                />
               </div>
             </div>
             <div class="col-12 col-md-12">

@@ -7,10 +7,6 @@
         <input type="text" v-model="material.name" class="form-control" id="name" required />
       </div>
       <div class="form-group">
-        <label for="patrimonyNumber">Número de Patrimônio</label>
-        <input type="text" v-model="material.patrimonyNumber" class="form-control" id="patrimonyNumber" required />
-      </div>
-      <div class="form-group">
         <label for="type">Tipo</label>
         <select v-model="material.type" class="form-control" id="type" required>
           <option value="PERMANENT">Permanente</option>
@@ -23,6 +19,10 @@
           <option value="ACTIVE">Ativo</option>
           <option value="INACTIVE">Inativo</option>
         </select>
+      </div>
+      <div class="form-group" v-show="material.type === 'PERMANENT'">
+        <label for="patrimonyNumber">Número de Patrimônio</label>
+        <input type="text" v-model="material.patrimonyNumber" class="form-control" id="patrimonyNumber" required />
       </div>
       <div class="form-group">
         <label for="description">Descrição</label>

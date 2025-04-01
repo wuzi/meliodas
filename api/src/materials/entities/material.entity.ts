@@ -32,7 +32,7 @@ export class Material {
   })
   type: MaterialType;
 
-  @Column()
+  @Column({ default: '' })
   patrimonyNumber: string;
 
   @Column()

@@ -101,7 +101,23 @@ export default {
   methods: {
     ...mapActions(['editUser', 'fetchUser', 'uploadProfilePicture']),
     async submit() {
-      await this.editUser({ id: this.$route.params.id, user: { ...this.user, password: this.user.password || undefined } });
+      if (this.user.password !== this.user.confirmPassword) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro',
+          text: 'As senhas não conferem',
+        });
+        return;
+      }
+      await this.editUser({
+        id: this.$route.params.id,
+        user: {
+          ...this.user,
+          password: this.user.password || undefined,
+          confirmPassword: undefined,
+          tempPassword: undefined,
+        }
+      });
       if (this.picture) {
         const user = await this.uploadProfilePicture({id: this.$route.params.id, file: this.picture});
         this.user.picture = user.picture;
@@ -112,7 +128,7 @@ export default {
         title: 'Sucesso',
         text: 'Usuário editado com sucesso',
       });
-      this.$router.push({ name: 'UserList' });
+      this.$router.push({ name: 'Usuários' });
     },
     onFileChange(event) {
       this.picture = event.target.files[0];
@@ -125,6 +141,7 @@ export default {
     const user = await this.fetchUser({ id: this.$route.params.id });
     this.user = user;
     this.user.password = '';
+    this.user.confirmPassword = '';
     this.userName = user.name;
   }
 }

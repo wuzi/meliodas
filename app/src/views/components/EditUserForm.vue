@@ -19,16 +19,19 @@
       <div class="form-group">
         <label for="category">Categoria</label>
         <select v-model="user.category" class="form-control" id="category" required>
-          <option value="STUDENT">Estudante</option>
-          <option value="TEACHER">Professor</option>
-          <option value="STAFF">Funcionário</option>
+          <option value="STUDENT">Aluno</option>
+          <option value="COLLABORATOR">Colaborador</option>
+          <option value="PROFESSOR">Professor</option>
+          <option value="OTHER">Outros</option>
         </select>
       </div>
       <div class="form-group">
         <label for="profile">Perfil</label>
         <select v-model="user.profile" class="form-control" id="profile" required>
           <option value="ADMIN">Administrador</option>
-          <option value="USER">Usuário</option>
+          <option value="RESEARCH_COORDINATOR">Coordenador de pesquisa</option>
+          <option value="EXTENSION_COORDINATOR">Coordenador de extensão</option>
+          <option value="OTHER">Outros</option>
         </select>
       </div>
       <div class="form-group">

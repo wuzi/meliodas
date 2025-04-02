@@ -27,7 +27,7 @@ export class MaterialsService {
   }
 
   findAll(findAllMaterialsDto?: FindAllMaterialsDto) {
-    const { type } = findAllMaterialsDto || {};
+    const { type, lowStock } = findAllMaterialsDto || {};
 
     const queryBuilder = this.materialRepository
       .createQueryBuilder('material')
@@ -36,6 +36,13 @@ export class MaterialsService {
 
     if (type) {
       queryBuilder.andWhere('material.type = :type', { type });
+    }
+
+    if (lowStock?.toLowerCase() === 'true') {
+      queryBuilder
+        .andWhere('material.quantity < material.minimum_quantity')
+        .andWhere('material.minimum_quantity IS NOT NULL')
+        .andWhere('material.quantity IS NOT NULL');
     }
 
     return queryBuilder.getMany();

@@ -55,8 +55,13 @@ export class MaterialsService {
     });
   }
 
-  update(id: string, updateMaterialDto: UpdateMaterialDto) {
-    return this.materialRepository.update(id, updateMaterialDto);
+  async update(id: string, updateMaterialDto: UpdateMaterialDto) {
+    const material = this.materialRepository.create(updateMaterialDto);
+    await this.materialRepository.update(id, material);
+    return this.materialRepository.findOneOrFail({
+      where: { id },
+      relations: ['images'],
+    });
   }
 
   async remove(id: string) {

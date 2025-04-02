@@ -74,10 +74,10 @@
                   data-original-title="Editar usuário"
                   title="Editar"
                 >
-                  <i class="fas fa-edit me-1"></i>
+                  <i class="fas fa-edit me-1"></i> Editar
                 </router-link>
                 <span @click="confirmDelete(user.id)" class="text-danger font-weight-bold text-xs ms-2" style="cursor: pointer;" title="Excluir">
-                  <i class="fas fa-trash-alt me-1"></i>
+                  <i class="fas fa-trash-alt me-1"></i> Excluir
                 </span>
               </td>
             </tr>

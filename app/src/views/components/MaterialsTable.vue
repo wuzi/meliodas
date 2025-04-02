@@ -156,8 +156,8 @@ export default {
     },
     confirmDecrement({ id, quantity }) {
       Swal.fire({
-        title: 'Confirmar uso',
-        text: "Deseja decrementar a quantidade deste material em 1 unidade?",
+        title: 'Emprestar',
+        text: "Deseja emprestar 1 unidade desse material?",
         icon: 'question',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

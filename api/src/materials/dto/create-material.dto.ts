@@ -6,4 +6,6 @@ export class CreateMaterialDto {
   readonly patrimonyNumber: string;
   readonly description: string;
   readonly status: MaterialStatus;
+  readonly quantity: number | null;
+  readonly minimum_quantity: number | null;
 }

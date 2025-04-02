@@ -20,9 +20,17 @@
           <option value="INACTIVE">Inativo</option>
         </select>
       </div>
-      <div class="form-group" v-show="material.type === 'PERMANENT'">
+      <div class="form-group" v-if="material.type === 'PERMANENT'">
         <label for="patrimonyNumber">Número de Patrimônio</label>
         <input type="text" v-model="material.patrimonyNumber" class="form-control" id="patrimonyNumber" required />
+      </div>
+      <div class="form-group" v-if="material.type === 'CONSUMABLE'">
+        <label for="quantity">Quantidade</label>
+        <input type="number" v-model="material.quantity" class="form-control" id="quantity" min="0" placeholder="0" required />
+      </div>
+      <div class="form-group" v-if="material.type === 'CONSUMABLE'">
+        <label for="minimum_quantity">Quantidade Mínima</label>
+        <input type="number" v-model="material.minimum_quantity" class="form-control" id="minimum_quantity" min="0" placeholder="0" required />
       </div>
       <div class="form-group">
         <label for="description">Descrição</label>
@@ -58,6 +66,8 @@ export default {
         type: 'PERMANENT',
         status: 'ACTIVE',
         description: '',
+        quantity: null,
+        minimum_quantity: null,
         images: [],
       },
       newImages: [],

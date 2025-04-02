@@ -45,6 +45,12 @@ export class Material {
   })
   status: MaterialStatus;
 
+  @Column({ nullable: true, type: 'int' })
+  quantity: number | null;
+
+  @Column({ nullable: true, type: 'int' })
+  minimum_quantity: number | null;
+
   @OneToMany(() => MaterialImage, (image) => image.material, { cascade: true })
   images: MaterialImage[];
 

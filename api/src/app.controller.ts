@@ -67,6 +67,8 @@ export class AppController {
         type: faker.helpers.arrayElement(Object.values(MaterialType)),
         patrimonyNumber: faker.string.numeric(6),
         status: MaterialStatus.Active,
+        quantity: faker.number.int({ min: 1, max: 100 }),
+        minimum_quantity: faker.number.int({ min: 1, max: 10 }),
       });
       materials.push(material);
     }

@@ -29,16 +29,7 @@
                 </select>
               </div>
             </div>
-            <div class="col-12 col-md-6">
-              <div class="form-group">
-                <label for="status">Status</label>
-                <select class="form-select" id="status">
-                  <option value="ACTIVE">Ativo</option>
-                  <option value="INACTIVE">Inativo</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-12 col-md-6" v-show="material.type === 'PERMANENT'">
+            <div class="col-12 col-md-6" v-if="material.type === 'PERMANENT'">
               <div class="form-group">
                 <label for="registration">Registro no Patrimônio UFSC</label>
                 <input
@@ -49,6 +40,27 @@
                   placeholder="Ex: 123456"
                   v-model="material.patrimonyNumber"
                 />
+              </div>
+            </div>
+            <div class="col-12 col-md-6" v-if="material.type === 'CONSUMABLE'">
+              <div class="form-group">
+                <label for="quantity">Quantidade</label>
+                <input type="number" v-model="material.quantity" class="form-control" id="quantity" min="0" placeholder="0" required />
+              </div>
+            </div>
+            <div class="col-12 col-md-6" v-if="material.type === 'CONSUMABLE'">
+              <div class="form-group">
+                <label for="minimum_quantity">Quantidade Mínima</label>
+                <input type="number" v-model="material.minimum_quantity" class="form-control" id="minimum_quantity" min="0" placeholder="0" required />
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-select" id="status">
+                  <option value="ACTIVE">Ativo</option>
+                  <option value="INACTIVE">Inativo</option>
+                </select>
               </div>
             </div>
             <div class="col-12 col-md-12">

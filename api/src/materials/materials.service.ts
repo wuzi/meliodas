@@ -4,7 +4,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateMaterialDto } from './dto/create-material.dto';
 import { UpdateMaterialDto } from './dto/update-material.dto';
 import { FindAllMaterialsDto } from './dto/find-all-materials.dto';
-import { Material, MaterialStatus } from './entities/material.entity';
+import {
+  Material,
+  MaterialStatus,
+  MaterialType,
+} from './entities/material.entity';
 import { MaterialImage } from './entities/material-image.entity';
 
 @Injectable()
@@ -40,6 +44,10 @@ export class MaterialsService {
 
     if (lowStock?.toLowerCase() === 'true') {
       queryBuilder
+        .andWhere('material.status = :status', {
+          status: MaterialStatus.Active,
+        })
+        .andWhere('material.type = :type', { type: MaterialType.Consumable })
         .andWhere('material.quantity < material.minimum_quantity')
         .andWhere('material.minimum_quantity IS NOT NULL')
         .andWhere('material.quantity IS NOT NULL');

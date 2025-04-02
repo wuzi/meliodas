@@ -10,10 +10,16 @@ const MaterialStatusTranslations = {
 
 const state = () => ({
   materials: [],
+  lowStockMaterials: [],
 });
 
 const getters = {
   materials: (state) => state.materials.map(material => ({
+    ...material,
+    type: MaterialTypeTranslations[material.type] || material.type,
+    status: MaterialStatusTranslations[material.status] || material.status,
+  })),
+  lowStockMaterials: (state) => state.lowStockMaterials.map(material => ({
     ...material,
     type: MaterialTypeTranslations[material.type] || material.type,
     status: MaterialStatusTranslations[material.status] || material.status,
@@ -52,6 +58,13 @@ const actions = {
     });
     commit("addMaterialImage", { id, data });
     return data;
+  },
+  async fetchLowStockMaterials({ commit}) {
+    const { data } = await this.$http.get('/materials', {
+      params: { lowStock: 'true' }
+    });
+    commit("setLowStockMaterials", data);
+    return data;
   }
 };
 
@@ -76,6 +89,9 @@ const mutations = {
     if (index !== -1) {
       state.materials[index].images.push(data);
     }
+  },
+  setLowStockMaterials(state, data) {
+    state.lowStockMaterials = data;
   }
 };
 

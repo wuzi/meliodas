@@ -72,11 +72,21 @@
                   class="text-secondary font-weight-bold text-xs"
                   data-toggle="tooltip"
                   data-original-title="Editar material"
+                  title="Editar"
                 >
-                  Editar
+                  <i class="fas fa-edit me-1"></i>
                 </router-link>
-                <span @click="confirmDelete(material.id)" class="text-danger font-weight-bold text-xs ms-2" style="cursor: pointer;">
-                  Excluir
+                <span @click="confirmDelete(material.id)" class="text-danger font-weight-bold text-xs ms-2" style="cursor: pointer;" title="Excluir">
+                  <i class="fas fa-trash-alt me-1"></i>
+                </span>
+                <span 
+                  v-if="material.type.toLowerCase() === 'consumível' && material.quantity > 0" 
+                  @click="confirmDecrement({ id: material.id, quantity: material.quantity })" 
+                  class="text-warning font-weight-bold text-xs ms-2" 
+                  style="cursor: pointer;" 
+                  title="Decrementar quantidade"
+                >
+                  <i class="fas fa-minus-circle me-1"></i>
                 </span>
               </td>
             </tr>
@@ -113,7 +123,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['deleteMaterial']),
+    ...mapActions(['deleteMaterial', 'editMaterial']),
     getPictureUrl(picture) {
       return picture ? `http://localhost:3000/uploads/material-images/${picture}` : img1;
     },
@@ -141,6 +151,35 @@ export default {
             'O material foi excluído.',
             'success'
           );
+        }
+      });
+    },
+    confirmDecrement({ id, quantity }) {
+      Swal.fire({
+        title: 'Confirmar uso',
+        text: "Deseja decrementar a quantidade deste material em 1 unidade?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, confirmar',
+        cancelButtonText: 'Cancelar'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            await this.editMaterial({ id, material: { quantity: quantity - 1 } });
+            Swal.fire(
+              'Concluído!',
+              'Quantidade do material atualizada.',
+              'success'
+            );
+          } catch (error) {
+            Swal.fire(
+              'Erro!',
+              'Não foi possível decrementar a quantidade.',
+              'error'
+            );
+          }
         }
       });
     }

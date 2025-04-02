@@ -72,11 +72,12 @@
                   class="text-secondary font-weight-bold text-xs"
                   data-toggle="tooltip"
                   data-original-title="Editar usuário"
+                  title="Editar"
                 >
-                  Editar
+                  <i class="fas fa-edit me-1"></i>
                 </router-link>
-                <span @click="confirmDelete(user.id)" class="text-danger font-weight-bold text-xs ms-2" style="cursor: pointer;">
-                  Excluir
+                <span @click="confirmDelete(user.id)" class="text-danger font-weight-bold text-xs ms-2" style="cursor: pointer;" title="Excluir">
+                  <i class="fas fa-trash-alt me-1"></i>
                 </span>
               </td>
             </tr>
